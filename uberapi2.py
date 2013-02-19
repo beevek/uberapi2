@@ -11,6 +11,7 @@ from json import loads
 # small refactor of twisted.web.client.getPage so we have access to
 # factory after the request
 
+
 def _get_factory(url, *args, **kwargs):
     return HTTPClientFactory(url, *args, **kwargs)
 
@@ -34,21 +35,19 @@ class UbersmithError(Exception):
 class uberapi2:
     '''Ubersmith 2.0 API client built on twisted.web.'''
 
-    def __init__(self, url = '', username = '', password = ''):
+    def __init__(self, url='', username='', password=''):
         self._url = url
         self._username = username
         self._password = password
 
     @defer.inlineCallbacks
-    def call(self, method, params = None):
+    def call(self, method, params=None):
         # compute the authorization header
         auth = '%s:%s' % (self._username, self._password)
         auth = base64.encodestring(auth).strip()
 
         # compute the request body
-        body = {
-            'method': method
-            }
+        body = {'method': method}
         if params:
             body.update(params)
         data = urlencode(body)
