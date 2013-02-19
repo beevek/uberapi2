@@ -1,4 +1,4 @@
-uberapi_2_client
+uberapi2
 ======================================================================
 
 This is a simple [Ubersmith](http://www.ubersmith.com/) APIv2 client
